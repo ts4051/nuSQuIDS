@@ -55,8 +55,37 @@ An [example python script](https://github.com/ts4051/nuSQuIDS/blob/bsm/resources
 Standard Model Extension
 ------------------------
 
-Coming soon...
+An implementation of neutrino oscillations incorporating the effects of Lorentz and CPT violation, based on the Standard Model Extension (SME) framework. This module follows the formalism laid out in the literature, particularly arXiv:hep-ph/9809521 and related works from V. Alan Kostelecký.
 
+The SME framework allows for a general parametrization of Lorentz-violating operators that can alter neutrino flavor evolution, extending the standard three-flavor oscillation model. This implementation integrates the SME formalism into the nuSQuIDS framework.
+
+The SME effects are implemented in the nuSQuIDSLIV(Atm) class. Users can define their SME scenario through the following methods:
+
+* `Set_LIVCoefficient(a_L, c_L, RA, DEC)` - Sets the CPT-odd and CPT-even Lorentz-violating coefficients and orientation of the neutrino propagation.
+	* `a_L` : CPT-odd SME parameter with shape [4, N, N], where N is number neutrino states and 4 is the number of space-time dimensions (4-vector indices)
+	* `c_L` : CPT-even SME parameter with shape [4, 4, N, N], where N is number neutrino states and 4 is the number of space-time dimensions (4-vector indices)
+ 	* `RA,DEC`: Right Ascension and Declination of neutrino propagation direction in a celestial equatorial coordinate system. 
+
+
+**Notes:**
+* The full 3-flavor SME formalism is supported, including both CPT-odd and CPT-even contributions. Flavor-changing and direction-dependent terms are fully allowed.
+* The SME coefficients can be defined in any frame, but the user is responsible for transforming to the propagation frame as needed. Coordinate transformation helper functions are included in the DEIMOS project implementation (https://github.com/ts4051/deimos.git).
+
+**Example**
+* An [Example python script](https://github.com/ts4051/deimos/blob/6b2003caca48dd0e9d52bfbc343a0a704f31c809/deimos/models/liv/paper_plots/plot_sme_sidereal_energy_dependence.py) is provided in external implementation framework DEIMOS demonstrating the effects of the direction dependent CPT-odd and CPT-even parameters includind the option to alter baseline orientation (RA,DEC). The script produces the following figure:
+
+![sme](https://github.com/SimonHNoerkjaer/deimos/blob/37f188570011219b58c20b96e8e74e837537f464/deimos/models/liv/paper_plots/plot_sme_sidereal_energy_dependence_nusquids.pdf)
+
+
+**Publications using this model:**
+* _Phenomenology paper on Sidereal signals of Lorentz Invariance Violation in atmospheric neutrino propagation through matter_ - [work in progress]
+
+
+
+**Contributors**:
+* Tom Stuttard
+* Simon Hilding-Nørkjær
+* Johann Ioannou-Nikolaides
 
 ---
 ---
